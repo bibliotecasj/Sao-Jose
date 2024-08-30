@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biblioteca  São José</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background-color: rgba(255, 145, 0, 0.712);
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            width: 100%;
+            bottom: 0;
+        }
+        #form-container {
+            display: none;
+            margin: 20px;
+            padding: 20px;
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        #admin-login-btn {
+            background-color: #ff990067;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        #admin-login-btn:hover {
+            background-color: #ff9900;
+        }
+        .delete-btn {
+            background-color: red;
+            color: white;
+            border: none;
+            padding: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+        #admin-section {
+            display: none;
+        }
+        #img {
+            background-color: rgba(255, 145, 0, 0.178);
+            border: none;
+            border-radius: 5px;
+        }
+        #admin-login-container {
+            
+            text-align: end;
+            margin: 20px;
+        }
+        #admin-password-container {
+            display: none;
+        }
+        a{
+            text-decoration: none;
+            padding-right: 20px;
+            position: center;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <button id="img"><img src="foto/sao jose.jpeg" alt="Biblioteca São José" height="150px" width="150px"></button>
+        <nav>
+            <bottom><a href="Liturgia.html">Liturgia</a></bottom>
+            <bottom><a href="index.html">Documentos</a></bottom>
+            <bottom><a href="oracoes.html">Oracoes</a></bottom>
+            <bottom><a href="Novenas.html">Novenas</a></bottom>
+            <bottom><a href="Espiritualidade.html">Espiritualidade</a></bottom>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Campo de senha para administrador -->
+        <div id="admin-login-container">
+            <button id="admin-login-btn">Login</button>
+            <div id="admin-password-container">
+                <label for="admin-password">Senha do Administrador:</label>
+                <input type="password" id="admin-password">
+                <button id="admin-login-submit-btn">Entrar</button>
+            </div>
+        </div>
+
+        <!-- Seção de administração (Adicionar/Apagar livros) -->
+        <div id="admin-section">
+            <div style="text-align: center; margin: 20px;">
+                <button id="show-form-btn">Adicionar</button>
+            </div>
+
+            <!-- Formulário de upload -->
+            <div id="form-container">
+                <form id="book-form">
+                    <label for="title">Nome:</label>
+                    <input type="text" id="title" required><br><br>
+
+                    <label for="author">Nome do Autor:</label>
+                    <input type="text" id="author"><br><br>
+
+                    <label for="description">Descrição:</label><br>
+                    <textarea id="description" rows="4" cols="50"></textarea><br><br>
+
+                    <label for="book-file">Carregar:</label>
+                    <input type="file" id="book-file" required><br><br>
+
+                    <button type="submit">Adicionar ao Repositório</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Lista de livros adicionados -->
+        <div id="book-list">
+            <h2 style="text-align: center;">Liturgia</h2>
+            <div id="books"></div>
+        </div>
+        
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Biblioteca de São José</p>
+    </footer>
+
+    <script>
+        // Senha de administrador
+        const adminPassword = "senhaSegura123";  // Substitua por uma senha segura
+
+        // Mostrar o campo de senha ao clicar no botão de login
+        document.getElementById('admin-login-btn').onclick = function() {
+            var passwordContainer = document.getElementById('admin-password-container');
+            passwordContainer.style.display = passwordContainer.style.display === 'none' ? 'block' : 'none';
+        };
+
+        // Verificar senha do administrador
+        document.getElementById('admin-login-submit-btn').onclick = function() {
+            var password = document.getElementById('admin-password').value;
+            if (password === adminPassword) {
+                document.getElementById('admin-section').style.display = 'block';
+                document.getElementById('admin-password-container').style.display = 'none';
+                reloadBooks();  // Recarregar livros para mostrar o botão de apagar
+            } else {
+                alert('Senha incorreta!');
+            }
+        };
+
+        // Mostrar/ocultar formulário
+        document.getElementById('show-form-btn').onclick = function() {
+            var formContainer = document.getElementById('form-container');
+            formContainer.style.display = formContainer.style.display === 'none' ? 'block' : 'none';
+        };
+
+    </script>
+        
+
+
+
+    
+    
+</body>
+</html>
